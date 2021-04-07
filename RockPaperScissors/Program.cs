@@ -45,47 +45,38 @@ namespace RockPaperScissors
                 }
             );
 
+            IPlayer CreateUser(string message)
+            {
+                IPlayer player = null;
+                
+                while (player == null)
+                {
+                    Console.WriteLine(message);
+                    var key = Console.ReadKey();
+                    Console.WriteLine();
+                    if (key.Key == ConsoleKey.C)
+                    {
+                        player = new ComputerPlayer();
+                    }
+                    else if (key.Key == ConsoleKey.H)
+                    {
+                        player = new HumanPlayer(makeHumanChoice);
+                    }
+                    else
+                    {
+                        Console.WriteLine(invalidInputString);
+                    }
+                }
+
+                return player;
+            }
+
             while (true)
             {
                 try
                 {
-                    while (playerOne == null)
-                    {
-                        Console.WriteLine("Please select the first player type, press 'C' for Computer or 'H' for Human");
-                        var key = Console.ReadKey();
-                        Console.WriteLine();
-                        if (key.Key == ConsoleKey.C)
-                        {
-                            playerOne = new ComputerPlayer();
-                        }
-                        else if (key.Key == ConsoleKey.H)
-                        {
-                            playerOne = new HumanPlayer(makeHumanChoice);
-                        }
-                        else
-                        {
-                            Console.WriteLine(invalidInputString);
-                        }
-                    }
-
-                    while (playerTwo == null)
-                    {
-                        Console.WriteLine("Please select the second player type, press 'C' for Computer or 'H' for Human");
-                        var key = Console.ReadKey();
-                        Console.WriteLine();
-                        if (key.Key == ConsoleKey.C)
-                        {
-                            playerTwo = new ComputerPlayer();
-                        }
-                        else if (key.Key == ConsoleKey.H)
-                        {
-                            playerTwo = new HumanPlayer(makeHumanChoice);
-                        }
-                        else
-                        {
-                            Console.WriteLine(invalidInputString);
-                        }
-                    }
+                    playerOne = CreateUser("Please select the first player type, press 'C' for Computer or 'H' for Human");
+                    playerTwo = CreateUser("Please select the second player type, press 'C' for Computer or 'H' for Human");
 
                     var game = new NotificationEnabledGame();
                     game.PlayerOneChoice += (sender, args) => { Console.WriteLine("Player One Choice Entered: {0}", Enum.GetName(typeof(Core.Rules.RockPaperScissors), args.PlayerChoice)); };
