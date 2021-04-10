@@ -95,8 +95,8 @@ namespace RockPaperScissors
                         Console.WriteLine("Game result: Winner {0}, Winning Choice {1}", winnerString, winningChoiceString);
                     };
 
-                    var session = new Session(playerOne, playerTwo, game);
-                    var result = session.Play(new DefaultGameRules(), 3);
+                    var session = new Session(game);
+                    var result = session.Play(playerOne, playerTwo, new DefaultGameRules(), 3);
 
                     if (result.IsDraw)
                     {

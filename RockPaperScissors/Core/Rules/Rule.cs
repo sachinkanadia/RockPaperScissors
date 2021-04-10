@@ -11,7 +11,7 @@
 
         private readonly RockPaperScissors _ValueOne;
         private readonly RockPaperScissors _ValueTwo;
-        private readonly RuleResult _Result;        
+        private readonly RuleResult _Result;
         
         public RuleResult Result
         {

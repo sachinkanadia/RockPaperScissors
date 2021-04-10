@@ -5,7 +5,7 @@ namespace RockPaperScissors.Core.Game
 {
     public class DefaultGame : IGame
     {
-        public GameResult Play(IPlayer playerOne, IPlayer playerTwo, IRules gameRules)
+        public virtual GameResult Play(IPlayer playerOne, IPlayer playerTwo, IRules gameRules)
         {
             var playerOneChoice = playerOne.Choose();
             OnPlayerOneChoiceMade(playerOneChoice);

@@ -4,20 +4,16 @@ using RockPaperScissors.Core.Rules;
 using System;
 namespace RockPaperScissors.Core.Session
 {
-    public class Session
+    public class Session : ISession
     {
-        public Session(IPlayer playerOne, IPlayer playerTwo, IGame game)
+        public Session(IGame game)
         {
-            _PlayerOne = playerOne;
-            _PlayerTwo = playerTwo;
             _Game = game;
         }
 
-        private readonly IPlayer _PlayerOne;
-        private readonly IPlayer _PlayerTwo;
         private readonly IGame _Game;
 
-        public SessionResult Play(IRules rules, int rounds)
+        public virtual SessionResult Play(IPlayer playerOne, IPlayer playerTwo, IRules rules, int rounds)
         {
             var breakWhenGamesWon = (rounds / 2) + 1;
             var playerOneWins = 0;
@@ -25,12 +21,12 @@ namespace RockPaperScissors.Core.Session
 
             for (var i = 0; i < rounds; i++)
             {
-                var gameResult = _Game.Play(_PlayerOne, _PlayerTwo, rules);
+                var gameResult = _Game.Play(playerOne, playerTwo, rules);
 
                 if (gameResult.IsDraw)
                     continue;
 
-                if (gameResult.Winner == _PlayerOne)
+                if (gameResult.Winner == playerOne)
                     playerOneWins++;
                 else
                     playerTwoWins++;
@@ -42,9 +38,9 @@ namespace RockPaperScissors.Core.Session
             if (playerOneWins == playerTwoWins)
                 return SessionResult.Draw;
             if (playerOneWins > playerTwoWins)
-                return new SessionResult(_PlayerOne);
+                return new SessionResult(playerOne);
             if (playerTwoWins > playerOneWins)
-                return new SessionResult(_PlayerTwo);
+                return new SessionResult(playerTwo);
 
             throw new ApplicationException("Unable to ascertain a winner!");
         }

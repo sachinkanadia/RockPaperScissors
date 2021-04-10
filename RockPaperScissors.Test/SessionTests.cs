@@ -32,8 +32,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Rock)
                 .Returns(Core.Rules.RockPaperScissors.Scissors);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.AreSame(playerTwo.Object, result.Winner);
             Assert.IsFalse(result.IsDraw);
@@ -59,8 +59,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Rock)
                 .Returns(Core.Rules.RockPaperScissors.Rock);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.AreSame(playerOne.Object, result.Winner);
             Assert.IsFalse(result.IsDraw);
@@ -90,8 +90,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Rock)
                 .Returns(Core.Rules.RockPaperScissors.Rock);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.AreSame(playerOne.Object, result.Winner);
             Assert.IsFalse(result.IsDraw);
@@ -123,8 +123,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Rock)
                 .Returns(Core.Rules.RockPaperScissors.Rock);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.AreSame(playerOne.Object, result.Winner);
             Assert.IsFalse(result.IsDraw);
@@ -152,8 +152,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Paper)
                 .Returns(Core.Rules.RockPaperScissors.Paper);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.IsNull(result.Winner);
             Assert.IsTrue(result.IsDraw);
@@ -193,8 +193,8 @@ namespace RockPaperScissors.Test
                 .Returns(Core.Rules.RockPaperScissors.Paper)
                 .Returns(Core.Rules.RockPaperScissors.Paper);
 
-            var session = new Session(playerOne.Object, playerTwo.Object, new DefaultGame());
-            var result = session.Play(_Rules, rounds);
+            var session = new Session(new DefaultGame());
+            var result = session.Play(playerOne.Object, playerTwo.Object, _Rules, rounds);
 
             Assert.IsNull(result.Winner);
             Assert.IsTrue(result.IsDraw);
